@@ -25,16 +25,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        String[] data = {
-                "Today - Sunny - 88/63",
-                "Tomorrow - Foggy - 70/40",
-                "Weds - Cloudy - 72/63",
-                "Thurs - Asteroids - 75/65",
-                "Fri - Heavy Rain - 65/56",
-                "Sat - HELK TRAPPED IN WEATHERSTATION - 60/51",
-                "Sun - Sunny 80/68"
-        };
-        List<String> weekForcast = new ArrayList<String>(Arrays.asList(data));
+
     }
 
     @Override
@@ -70,6 +61,16 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            String[] data = {
+                    "Today - Sunny - 88/63",
+                    "Tomorrow - Foggy - 70/40",
+                    "Weds - Cloudy - 72/63",
+                    "Thurs - Asteroids - 75/65",
+                    "Fri - Heavy Rain - 65/56",
+                    "Sat - HELK TRAPPED IN WEATHERSTATION - 60/51",
+                    "Sun - Sunny 80/68"
+            };
+            List<String> weekForcast = new ArrayList<String>(Arrays.asList(data));
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
