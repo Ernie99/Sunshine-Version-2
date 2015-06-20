@@ -1,4 +1,4 @@
-package com.example.android.sunshine.app;
+package com.ernietech.sunshine.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
