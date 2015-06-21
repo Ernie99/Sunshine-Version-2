@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
-    ArrayAdapter<String> mForcastAdapter;
+    private ArrayAdapter<String> mForcastAdapter;
 
     public ForecastFragment() {
     }
@@ -280,6 +280,16 @@ public class ForecastFragment extends Fragment {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String[] result) {
+            if(result != null){
+                mForcastAdapter.clear();
+                for(String dayForcastStr : result){
+                    mForcastAdapter.add(dayForcastStr);
+                }
+            }
         }
     }
 }
