@@ -3,6 +3,7 @@ package com.ernietech.sunshine.app.data;
 /**
  * Created by ernie on 6/27/15.
  */
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
@@ -114,6 +115,33 @@ public class TestDb extends AndroidTestCase {
         // query if you like)
 
         // Finally, close the cursor and database
+
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues testValues = TestUtilities.createNorthPoleLocationValues();
+        long locationRowId;
+        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, testValues);
+
+        assertTrue(locationRowId != -1);
+
+        Cursor cursor = db.query(
+                WeatherContract.LocationEntry.TABLE_NAME, // Table to Query
+                null, // all columns
+                null, // Columns for the "where" clause
+                null, // Values for the "where" clause
+                null, // columns to group by
+                null, // columns to filter by row groups
+                null //sort order
+        );
+
+        assertTrue("Error: No Records returned from location query", cursor.moveToFirst());
+        TestUtilities.validateCurrentRecord("Error: location Query Validation Faild",
+                cursor, testValues);
+        // Move the cursor to demonstrate that there is only one record in the database
+        assertFalse("Error: more than one record returned from location query",
+                cursor.moveToNext() );
+        cursor.close();
+        db.close();
 
     }
 
